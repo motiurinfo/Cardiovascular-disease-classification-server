@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Pathological Disease Classification</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+@keyframes dot-keyframes {
+  0% {
+    opacity: 0.4;
+    transform: scale(1, 1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(1, 1);
+  }
+}
+.loading-dots {
+  text-align: center;
+  width: 100%;
+}
+.loading-dots--dot {
+  animation: dot-keyframes 1.5s infinite ease-in-out;
+  background-color: #fff;
+  border-radius: 10px;
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  margin: 15px;
+}
+.loading-dots--dot:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.loading-dots--dot:nth-child(3) {
+  animation-delay: 1s;
+}
+
+    </style>
+  </head>
+  <body>
+
+    <center >
+     <h1 >Pathological Disease Classification</h1>
+      <div class="single-url">
+        <h2>Enter Information of single patient:</h2>
+        <div class="form-row">
+        <div class="form-group col-md-6">
+              <label for="patients">Patient</label></br>
+            <select class="form-select" id="patient" aria-label="Model Selection">
+                <option value="0" readonly>Select a Patient</option>
+                <option value="1">Patient 1</option>
+                <option value="2">Patient 2</option>
+                <option value="3">Patient 3</option>
+
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+              <label for="addpatients">Add Patient</label></br>
+              <button onclick="window.location.href='/add_patients'"class="btn btn-primary btn-lg mb-2" >Registrar Patients</button>
+
+        </div>
+      </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="age">Age</label>
+              <input type="number" class="form-control" required id="age" placeholder="Age">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="troponin">Troponin</label>
+              <input type="text" class="form-control" required id="troponin" placeholder="Troponin">
+            </div>
+            <div class="form-group col-md-4" id="diabetes">
+              <label for="diabetes">Diabetes</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="diabetes"  value="1" >
+                <label class="form-check-label" for="diabetes">
+                  Yes
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="diabetes" value="0">
+                <label class="form-check-label" for="diabetes">
+                  No
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="FEVG">FEVG</label>
+                <input type="text" required class="form-control" id="FEVG" placeholder="FEVG">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="NTP">NTP</label>
+                <input type="text" required class="form-control" id="NTP" placeholder="NTP">
+              </div>
+              <div class="form-group col-md-4" id="FamilialDisease">
+                <label for="FamilialDisease">Familial Disease</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="FamilialDisease"  value="1" >
+                  <label class="form-check-label" for="FamilialDisease">
+                    Yes
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="FamilialDisease" value="0">
+                  <label class="form-check-label" for="FamilialDisease">
+                    No
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3" id="sex">
+                  <label for="sex">Sex</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sex" value="0">
+                    <label class="form-check-label" for="sex">
+                      Male
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sex" value="1">
+                    <label class="form-check-label" for="sex">
+                      Female
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group col-md-3" id="tobacco">
+                  <label for="tobacco">Tobacco</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tobacco"  value="1" >
+                    <label class="form-check-label" for="tobacco">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tobacco" value="0">
+                    <label class="form-check-label" for="tobacco">
+                      No
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tobacco"  value="2">
+                    <label class="form-check-label" for="tobacco">
+                      Formar Smoker
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-3" id="overweight">
+                  <label for="overweight">Overweight</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="overweight"  value="1" >
+                    <label class="form-check-label" for="overweight">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="overweight" value="0">
+                    <label class="form-check-label" for="overweight">
+                      No
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-3" id="hypertension">
+                  <label for="hypertension">Hypertension</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="hypertension"  value="1" >
+                    <label class="form-check-label" for="hypertension">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="hypertension"  value="0">
+                    <label class="form-check-label" for="hypertension">
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                    <div class="form-group col-md-6">
+                          <label for="model">Model Selection</label>
+                        <select class="form-select" id="model" aria-label="Model Selection">
+                            <option value="svm">Support Vector Machine</option>
+                            <option value="knn">k-Nearest Neighbors</option>
+                            <option selected value="rf">Random Forest</option>
+                            <option value="et">Extremely Randomized Tree</option>
+                            <option value="gb">Gradient Boosting</option>
+                            <option value="dt">Decision Tree</option>
+                            <option value="mlp">Multi-Layer Perceptron</option>
+                            <option value="xgb">eXtreme Gradient Boost	</option>
+                            <option value="lgbm">Light Gradient Boosting Machine</option>
+                            <option value="stacking">Stacked Generalization</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                          <label for="technique">Imbalance Technique Selection</label>
+                          <select id="technique" class="form-select" aria-label="Technique Selection">
+                              <option selected value="stratified">Stratified</option>
+                              <option value="undersampling">Undersampling</option>
+                              <option value="oversampling">Oversampling</option>
+                              <option value="nearmiss">NearMiss Undersampling</option>
+                              <option value="smote">SMOTE Oversampling</option>
+                        </select>
+                    </div>
+          </div>
+
+          <button type="submit" class="btn getResult btn-primary btn-lg mb-2" style="margin-left: 10px">Submit</button>
+             <div>
+      <span >If you want see the result of multiple patients. You can upload a file containing patients information. </span><span><button type="button" class="btn text-white btn-primary multi">Upload File</button></span>
+    </div>
+
+
+
+    </div>
+
+    <div class="multiple-urls" style="display: none;margin-top: 50px">
+  <form  method='POST' action="http://localhost:5000" enctype=multipart/form-data>
+      <input type=file name=file class="btn text-white">
+      <input type=submit value=Upload class="btn btn-primary">
+    </form>
+           <div>
+      <span >If you want see the result of single patient. You can enter the information of single patients. </span><span><button type="button" class="btn text-white btn-primary single">Enter single patient information</button></span>
+    </div>
+  </div>
+      <div class="result"></div>
+      <div class="features"></div>
+    </center>
+
+
+
+  </body>
+  <script>
+
+
+
+   document.getElementsByClassName("getResult")[0].addEventListener("click",result);
+   function result(){
+
+    var div = document.querySelector(".result");
+    var age = document.getElementById('age').value;
+    var tobacco = $("input[type='radio'][name='tobacco']:checked").val();
+    var fevg = document.getElementById('FEVG').value;
+    var ntp = document.getElementById('NTP').value;
+    var troponin = document.getElementById('troponin').value;
+    var diabetes = $("input[type='radio'][name='diabetes']:checked").val();
+    var sex = $("input[type='radio'][name='sex']:checked").val();
+    var overweight = $("input[type='radio'][name='overweight']:checked").val();
+    var FamilialDisease = $("input[type='radio'][name='FamilialDisease']:checked").val();
+    var hypertension = $("input[type='radio'][name='hypertension']:checked").val();
+    var model = document.getElementById("model").value;
+    var technique = document.getElementById("technique").value;
+
+    /*if (age == null && tobacco == null && fevg == null && ntp == null && troponin == null && diabetes == null && sex == null && overweight == null && FamilialDisease ==null && hypertension == null) {
+      alert("Please Fill All Required Field");
+      return false;
+    }else {
+
+    }*/
+ 		$.ajax({
+ 			data : {
+ 				age:age,tobacco:tobacco,fevg:fevg,ntp:ntp,troponin:troponin,diabetes:diabetes,sex:sex,overweight:overweight,FamilialDisease:FamilialDisease,hypertension:hypertension, model:model, technique:technique
+ 			},
+ 			type : 'GET',
+ 			url : '/result'
+ 		}).always(div.innerHTML= '<div class="loading-dots mt-4"><div class="loading-dots--dot"></div><div class="loading-dots--dot"></div><div class="loading-dots--dot"></div></div>')
+ 		.done(function(data) {
+
+ 			if (data.error) {
+ 				alert(data.error);
+ 			}
+ 			else {
+        if (typeof(data) == "object") {
+
+
+        var features_table = '<table class="table"><thead><tr><th>Features Name</th><th>Importance (%)</th></tr></thead><tbody>';
+
+        for (var key in data.features){
+                //key will be -> 'id'
+                //dictionary[key] -> 'value'
+                //for(var features in key)
+                features_table += '<tr><td>'+key+'</td>';
+                features_table += '<td>'+(data.features[key]*100).toFixed(2)+'% </td></tr>';
+                //console.log(data[key])
+          }
+
+        //features_table += '';
+
+        features_table += '</tbody></table>';
+
+        document.querySelector('.features').innerHTML = features_table;
+
+        var newHTML = '<h3 class="mt-4">'+data.result+'</h3>';
+        div.innerHTML=  newHTML;
+      }else {
+        document.querySelector('.features').innerHTML = '';
+        var newHTML = '<h3 class="mt-4">'+data+'</h3>';
+        div.innerHTML=  newHTML;
+      }
+    }
+
+ 		});
+
+
+   }
+
+$(document).ready(function(){
+
+$(".multi").on('click',function(){
+
+$(".multiple-urls").show();
+$(".single-url").hide();
+});
+
+$(".single").on('click',function(){
+
+$(".multiple-urls").hide();
+$(".single-url").show();
+});
+
+
+
+});
+
+function checkRadio(){
+    var check = $(this).attr('checked')
+      if (check) $(this).removeAttr('checked').prop('checked',false)
+      else $(this).attr('checked', true).prop('checked',true)
+
+}
+
+  </script>
+</html>

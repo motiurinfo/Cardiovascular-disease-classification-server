@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Pathological Disease Classification</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+    <style>
+    /* Blue Flat Button
+==================================================*/
+.btn-xlarge{
+position: relative;
+vertical-align: center;
+margin: 30px;
+/*width: 100%;*/
+height: 100x;
+padding: 48px 48px;
+font-size: 22px;
+color: white;
+text-align: center;
+text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+background: #62b1d0;
+border: 0;
+border-bottom: 3px solid #9FE8EF;
+cursor: pointer;
+-webkit-box-shadow: inset 0 -3px #9FE8EF;
+box-shadow: inset 0 -3px #9FE8EF;
+}
+.btn-xlarge:active {
+top: 2px;
+outline: none;
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+.btn-xlarge:hover {
+background: #45E1E8;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <center>
+        <h1 >Pathological Disease Classification</h1></br></br>
+    	<div class="row">
+        <div class="col-md-6">
+                  <label for="add_patients"><h2>Add Patient</h2></label></br>
+                  <button onclick="window.location.href = '/add_patients'" class="btn btn-xlarge" /><i class="fa fa-info-circle fa-5x" ></i></button>
+        </div>
+        <div class="col-md-6">
+                  <label for="physical_data"><h2>Classification with Physical Data</h2></label></br>
+                  <button onclick="window.location.href ='/detection'"  class="btn btn-xlarge" /><i class="fa fa-medkit fa-5x" ></i></button>
+        </div>
+
+        </div>
+    </div>
+  </center>
+  </body>
+
+</html>
